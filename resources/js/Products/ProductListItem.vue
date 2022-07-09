@@ -34,14 +34,9 @@
 </template>
 
 <script>
-import ProductTagsList from "./ProductTagsList"
-
 export default {
     inheritAttrs:false,
     props: ['product', 'tags',], // received from <products-list> in ProductAdmin <template> section?
-    components: {  // include component(s) imported above
-        ProductTagsList,
-    },
     methods: {
         updateProduct(){
             axios.put( 'api/product/' + this.product.id , {
