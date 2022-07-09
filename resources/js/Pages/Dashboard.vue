@@ -13,7 +13,6 @@ import Welcome from '@/Jetstream/Welcome.vue';
             </div>
         </div>
                 <div id="app">
-                    <app></app>
                 </div>
     </AppLayout>
 </template>

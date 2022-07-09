@@ -310,7 +310,7 @@ const logout = () => {
 
             <!-- Page Content -->
             <main>
-                <router-view></router-view>
+                <!--<router-view></router-view>-->
                 <slot />
             </main>
         </div>
