@@ -53,11 +53,12 @@ defineProps({
             <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <!-- create the div to hold the vue app - see resources\js\app.js and resources\js\vue\app.vue -->
                 <div id="app"> <!-- cross reference to const app in resources\js\app.js -->
-                    <app></app> <!-- instance of app component  -->
+                    <!--<app></app>--> <!-- instance of app component  -->
                     <TagAdmin />
                     <ProductAdmin />
                 </div>
                 
+                <!--
                 <div class="grid grid-cols-1 md:grid-cols-2">
                     <div class="p-6">
                         <div class="flex items-center">
@@ -151,6 +152,7 @@ defineProps({
                         </div>
                     </div>
                 </div>
+                -->
             </div>
 
             <div class="flex justify-center mt-4 sm:items-center sm:justify-between">

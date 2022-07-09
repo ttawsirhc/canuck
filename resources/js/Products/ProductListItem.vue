@@ -1,21 +1,47 @@
 <template>
     <div class="product">
         <span class="productText">
+            <!-- associate product name textbox and product name of product in props below -->
             <input type="text" v-model="product.name" width="25" />
+            <!-- associate product price number field and product price of product in props below -->
             $&nbsp;<input type="number" v-model="product.price" width="25" />
+            <!-- associate product image source textbox and product image source of product in props below -->
             <input type="text" v-model="product.img_src_path" width="25" /><br />
+            <!-- associate product description textarea and product description of product in props below -->
             <textarea v-model="product.description"></textarea>
         </span>
+        <!-- note: @click = v-on:click; when clicked, execute updateProduct function in methods below -->
         <button @click="updateProduct()" class="trashcan">Update</button>&nbsp;&nbsp;
+        <!-- note: @click = when clicked, execute removeProduct function in methods below -->
         <button @click="removeProduct()" class="trashcan">Delete</button>
+    </div>
+    <div class="product">
+        <span class="productText">
+            Tags:
+            <span v-for="(tag, index ) in product.tags" :key="index">
+                {{ tag.name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Add a tag:&nbsp;
+            </span>
+                <select>
+                    <option :value="optiontag.id" v-for="optiontag in tags">{{ optiontag.name }}</option>
+                </select>
+            &nbsp;All Tags:
+            <span v-for="( optiontag, index ) in tags" :key="index">
+                {{ optiontag.name }} &nbsp;&nbsp;
+            </span>
+        </span>
     </div>
 </template>
 
 <script>
-import axios from 'axios'
+import ProductTagsList from "./ProductTagsList"
 
 export default {
-    props: ['product'],
+    inheritAttrs:false,
+    props: ['product', 'tags',], // received from <products-list> in ProductAdmin <template> section?
+    components: {  // include component(s) imported above
+        ProductTagsList,
+    },
     methods: {
         updateProduct(){
             axios.put( 'api/product/' + this.product.id , {
@@ -23,7 +49,7 @@ export default {
             })
             .then( response => {
                 if( response.status == 200 ) {
-                    this.$emit('itemchanged');
+                    this.$emit('productchanged');
                 }
             })
             .catch( error => {
@@ -34,7 +60,7 @@ export default {
             axios.delete('api/product/' + this.product.id )
             .then( response => {
                 if( response.status == 200 ) {
-                    this.$emit('itemchanged')
+                    this.$emit('productchanged')
                 }
             })
             .catch ( error => {

@@ -23,7 +23,7 @@ import App from '../vue/app';
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <Welcome />
                     <!-- is this maybe where the router content will eventually go? -->
-                    <App />
+                    <!--<App />-->
                 </div>
             </div>
         </div>

@@ -1,11 +1,14 @@
 <template>
     <div class="addProduct">
-        <!-- v-model - some sort of binding between the textbox and the item name in "data" below ... -->
+        <!-- associate product name textbox and product name in data function below -->
         <input type="text" placeholder="Product name" v-model="product.name" width="25" required />&nbsp;
+        <!-- associate product price input and product price in data function below -->
         $&nbsp;<input type="number" placeholder="Product price" v-model="product.price" width="5" required />&nbsp;
+        <!-- associate product image textbox and product image in data function below -->
         <input type="text" placeholder="Product image" v-model="product.img_src_path" width="25" required />
-        <!-- note: @click is the same as v-on:click; call addItem function in "methods" below -->
+        <!-- associate product description textarea and product description in data function below -->
         <br /><textarea placeholder="Product description" v-model="product.description" required></textarea>&nbsp;
+        <!-- note: @click is the same as v-on:click; when executed call addProduct function in "methods" below -->
         <button class="button" @click="addProduct()">Add</button>
     </div>
 </template>
@@ -14,37 +17,35 @@
 export default {
     data: function () {
         return {
-            product: {
+            product: { // product data, initialize attributes
                 name: "",
                 description: "",
                 price: 0,
-                image: "",
+                img_src_path: "",
             }
         }
     },
     methods: {
         addProduct() {
-            /*
-            if( 
-                this.product.name == '' || 
-                this.product.description == '' ||
-                this.product.image == '' 
-            ) { return; }
-            */
-            axios.post('api/product/store', {
+            // make sure fields are not empty before saving 
+            if( this.product.name == '' ){ return; } 
+            if( this.product.description == '' ){ return; } 
+            if( this.product.img_src_path == '' ){ return; } 
+
+            axios.post('api/product/store', { // use axios to call API endpoint to save product data from form above
                 product: this.product
             })
             .then( response => {
-                if( response.status == 201 ) {
+                if( response.status == 201 ) { // successful execution, reset form elements to empty
                     this.product.name = "";
                     this.product.description = "";
                     this.product.price = 0;
-                    this.product.image = "";
-                    this.$emit('reloadlist');
+                    this.product.img_src_path = "";
+                    this.$emit('reloadproductslist'); // $emit reloadproductslist up to ProductAdmin component to execute getProductList function
                 }
             })
             .catch( error => {
-                console.log( error );
+                console.log( error );  // show error in console, if triggered
             })
         }
     }
@@ -79,5 +80,4 @@ input {
     margin-right: 10px;
     width: 200px;
 }
-
 </style>

@@ -36,6 +36,7 @@ Route::prefix('/tag')->group(function() {
     Route::delete('/{id}', [TagController::class, 'destroy']);
 });
 
+Route::get('/productswithtags', [ProductController::class, 'productsWithTags']);
 Route::get('/products', [ProductController::class, 'index']);
 Route::prefix('/product')->group(function() {
     Route::post('/store', [ProductController::class, 'store']);

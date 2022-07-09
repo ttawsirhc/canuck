@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Tag;
 
 class ProductController extends Controller
 {
@@ -13,7 +14,13 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        return Product::orderBy( 'name', 'DESC' )->get();
+        $products = Product::orderBy( 'name', 'DESC' )->get();
+        return $products;
+    }
+
+    public function productsWithTags(){
+        $products = Product::with( 'tags' )->get();
+        return $products;
     }
 
     /*** Show the form for creating a new resource. @return \Illuminate\Http\Response */

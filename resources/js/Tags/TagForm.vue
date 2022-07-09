@@ -1,8 +1,8 @@
 <template>
     <div class="addTag">
-        <!-- v-model - some sort of binding between the textbox and the item name in "data" below ... -->
+        <!-- associate tag name textbox and tag name in data function below -->
         <input type="text" placeholder="Input tag name ..." v-model="tag.name" width="25"/>
-        <!-- note: @click is the same as v-on:click; call addItem function in "methods" below -->
+        <!-- note: @click = v-on:click; when clicked, execute addTag function in methods below -->
         <button class="button" @click="addTag()">Add</button>
     </div>
 </template>
@@ -11,28 +11,26 @@
 export default {
     data: function () {
         return {
-            tag: {
-                name: ""
+            tag: { // tag data
+                name: "" // name attribute of tag data, initialize to empty string
             }
         }
     },
     methods: {
-        addTag() {
-            if( this.tag.name == '' ) {
-                return;
-            }
+        addTag() {            
+            if( this.tag.name == '' ) { return; } // make sure tag.name textbox not empty before saving
 
-            axios.post('api/tag/store', {
+            axios.post('api/tag/store', { // use axios to call API endpoint to store tag data from form above
                 tag: this.tag
             })
             .then( response => {
-                if( response.status == 201 ) {
-                    this.tag.name = "";
-                    this.$emit('reloadlist');
+                if( response.status == 201 ) { // successful response data
+                    this.tag.name = ""; // reset tag data (and textbox) to empty string after saving
+                    this.$emit('reloadtagslist'); // $emit reloadtagslist up to TagAdmin component to execute getTagsList function 
                 }
             })
             .catch( error => {
-                console.log( error );
+                console.log( error ); // print error to console
             })
         }
     }
@@ -67,5 +65,4 @@ input {
     margin-right: 10px;
     width: 200px;
 }
-
 </style>

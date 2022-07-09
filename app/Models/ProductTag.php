@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Product extends Model{ // model for products
+class ProductTag extends Model // class ProductTag extends Pivot
+{
     use HasFactory;
 
     protected $fillable = [ 'name' ];
 
-    public function tags(){ // relationship to tags
-        return $this->belongsToMany( Tag::class );
-    } // end function tags
-
-} // end class Product
+    public function products(){ // relationship to tags
+        return $this->belongsToMany( Product::class );
+    } // end function products
+}
