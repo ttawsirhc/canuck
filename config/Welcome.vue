@@ -2,12 +2,6 @@
 import { Head, Link } from '@inertiajs/inertia-vue3';
 import TagAdmin from '../Tags/TagAdmin';
 import ProductAdmin from '../Products/ProductAdmin';
-import Test from './Test';
-import WhiteSuperMenu from '../Examples/WhiteSuperMenu';
-import BlackTopNav from '../Examples/BlackTopNav';
-import ThreeProducts from '../Examples/ThreeProducts';
-import FourSquare from '../Examples/FourSquare';
-import Tabs from '../Examples/Tabs';
 
 defineProps({
     canLogin: Boolean,
@@ -21,7 +15,7 @@ defineProps({
 <template>
     <Head title="Welcome" />
 
-        <!--<div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">-->
+    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
         <div v-if="canLogin" class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
             <Link v-if="$page.props.user" :href="route('dashboard')" class="text-sm text-gray-700 underline">
                 Dashboard
@@ -38,24 +32,14 @@ defineProps({
             </template>
         </div>
 
-        <!--
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                 <img src="/img/canuck_logo_small.gif">
             </div>
-        -->
-        <div>
 
-            
-
-            <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+              <div class="flex mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <!-- create the div to hold the vue app - see resources\js\app.js and resources\js\vue\app.vue -->
                 <div id="app"> <!-- cross reference to const app in resources\js\app.js -->
-                    <BlackTopNav />
-                    <WhiteSuperMenu />
-                    <ThreeProducts />
-                    <FourSquare />
-                    <Tabs />
                     <TagAdmin /> <!-- instance of TagAdmin component  -->
                     <ProductAdmin /> <!-- instance of ProductAdmin component  -->
                 </div>
@@ -68,7 +52,7 @@ defineProps({
                 </div>
             </div>
         </div>
-    <!--</div>-->
+    </div>
 </template>
 
 <style scoped>
