@@ -7,7 +7,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 // import { createWebHistory, createRouter } from "vue-router";
 import Welcome from "./Jetstream/Welcome";
 import TagAdmin from "./Tags/TagAdmin";
-import ProductAdmin from "./Productsz/ProductAdmin";
+import ProductAdmin from "./Products/ProductAdmin";
 
 /*
 const routes = [
